@@ -146,6 +146,7 @@ public class Lab5 {
           System.out.println("7 - Сдвиг на вектор");
           System.out.println("8 - Симметрия относительно начала координат");
           System.out.println("9 - Удалить фигуру");
+          System.out.println("10  - Сортировка по дате создания");
           System.out.println("--------------------------------------------------");
         String mode = in.nextLine();
       if (mode.isEmpty()) break; // прерываем цикл, если строка пустая
@@ -153,6 +154,7 @@ public class Lab5 {
           int sortMode=0;
           if (mode.equals("3")||mode.equals("4")) sortMode=1;
           else if (mode.equals("5")||mode.equals("6")) sortMode=2;
+          else if (mode.equals("10")) sortMode=3;
           Collections.sort(list,new SortMode(sortUp,sortMode));
      if (mode.equals("7"))
          {System.out.println("Введите координату x: ");

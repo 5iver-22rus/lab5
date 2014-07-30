@@ -1,4 +1,6 @@
 package ru.zapryagaev.lab5.classes;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
 Класс описывающий объект "Вектор"
 */
@@ -6,33 +8,34 @@ public class Vector extends Point{
     private double x0,y0,z0,x1,y1,z1;
     private double length; // длина отрезка
     private double ox, oy, oz;
-    
-    public double getX0(){ 
-        return x0; 
-    } 
-    
-    public double getY0(){ 
-        return y0; 
-    } 
-     
-    public double getZ0(){ 
-        return z0; 
-    } 
-     
-    public double getX1(){ 
-        return x1; 
-    } 
-    public double getY1(){ 
-        return y1; 
-    } 
-   
-   public double getZ1(){ 
-        return z1; 
-    } 
-    
+    private Date date;
+
+    public double getX0(){
+        return x0;
+    }
+
+    public double getY0(){
+        return y0;
+    }
+
+    public double getZ0(){
+        return z0;
+    }
+
+    public double getX1(){
+        return x1;
+    }
+    public double getY1(){
+        return y1;
+    }
+
+   public double getZ1(){
+        return z1;
+    }
+
     public Vector(double x0, double y0, double z0, double x1, double y1, double z1){ // конструктор
-        super((x0+x1)/2, (y0+y1)/2, (z0+z1)/2); 
-        this.setName("Вектор"); 
+        super((x0+x1)/2, (y0+y1)/2, (z0+z1)/2);
+        this.setName("Вектор");
         this.x0=x0;
         this.y0=y0;
         this.z0=z0;
@@ -41,8 +44,9 @@ public class Vector extends Point{
         this.z1=z1;
         calcLength();
         anglesVal();
-    } 
-    
+        date=new Date();
+    }
+
      @Override
     public void move(Point p) {
         double dx = p.getX() - getX();
@@ -59,21 +63,21 @@ public class Vector extends Point{
 
     @Override
     public void simetry() {
-       x0=-x0; 
-       y0=-y0; 
+       x0=-x0;
+       y0=-y0;
        z0=-z0;
        x1 = -x1;
        y1 = -y1;
        z1 = -z1;
            }
-    
+
     private void calcLength(){
-        double dx=x0-x1; 
+        double dx=x0-x1;
         double dy=y0-y1;
         double dz=z0-z1;
         length = Math.sqrt(dx*dx+dy*dy+dz*dz);
     }
-    
+
     private void anglesVal(){
         double x, y, z;
         x=x1-x0;
@@ -86,15 +90,16 @@ public class Vector extends Point{
         oy=Math.toDegrees(Math.acos(cos_oy));
         oz=Math.toDegrees(Math.acos(cos_oz));
     }
-    
-    public double getLength(){ 
-        return length; 
+
+    public double getLength(){
+        return length;
     }
-    
+
     @Override
     public String toString(){
+ SimpleDateFormat format1 = new SimpleDateFormat("  Дата создания: dd.MM.yyyy hh:mm:ss");
  return   "id="+this.getId()+",   "+this.getName()+"   ("+x0+","+y0+","+z0+")   -   ("+x1+","+y1+","+z1+"), длина="+Math.round(length*100)/100f +
-         "  Углы наклона к осям: оx="+ox+";  оy="+oy+"; oz="+oz+".\n"; 
+         "  Углы наклона к осям: оx="+ox+";  оy="+oy+"; oz="+oz+"  "+format1.format(date)+".\n";
     }
- 
+
 }
